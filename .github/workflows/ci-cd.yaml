@@ -49,7 +49,7 @@ jobs:
 
       - name: Login to AWS ECR
         run: |
-          aws ecr get-login-password --region ${{ env.AWS_DEFAULT_REGION }} | helm registry login --username AWS --password-stdin 590184127530.dkr.ecr.us-east-2.amazonaws.com
+          aws ecr get-login-password --region ${{ env.AWS_DEFAULT_REGION }} | docker login --username AWS --password-stdin ${{ env.CI_REGISTRY_IMAGE }}
 
       - name: Build and push Docker image with remote cache
         uses: docker/build-push-action@v5
@@ -96,4 +96,4 @@ jobs:
 
       - name: Deploy with Helm
         run: |
-          helm upgrade --install blockscout-stack -n blockscout-stage oci://590184127530.dkr.ecr.us-east-2.amazonaws.com/cypher/blockscout-stack --version 1 -f ./helm-values.yaml --set "frontend.image.tag=${{ env.TAG_IMAGE }}"
+          helm upgrade --install blockscout-stack -n blockscout-stage oci://590184127530.dkr.ecr.us-east-2.amazonaws.com/cypher/blockscout-stack --version 1 -f ./helm-values.yaml --set "frontend.image.repository=${{ env.CI_REGISTRY_IMAGE }}" --set "frontend.image.tag=${{ env.TAG_IMAGE }}"
