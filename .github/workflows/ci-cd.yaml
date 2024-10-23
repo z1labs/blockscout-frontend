@@ -38,19 +38,19 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Build and push Docker image using Kaniko
-        uses: "gcr.io/kaniko-project/executor:debug"
-        env:
-          DOCKER_CONFIG: /kaniko/.docker
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        with:
-          args: |
-            --context="${{ github.workspace }}"
-            --dockerfile="${{ github.workspace }}/Dockerfile"
-            --destination="${{ env.CI_REGISTRY_IMAGE }}:${{ env.TAG_IMAGE }}"
-            --cache=true
-            --cleanup
-            --cache-dir="${{ github.workspace }}/cache"
+        run: |
+          docker run \
+            -v "${{ github.workspace }}":/workspace \
+            -v /kaniko/.docker:/kaniko/.docker \
+            -e AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }} \
+            -e AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }} \
+            gcr.io/kaniko-project/executor:debug \
+            --context=/workspace \
+            --dockerfile=/workspace/Dockerfile \
+            --destination="${{ env.CI_REGISTRY_IMAGE }}:${{ env.TAG_IMAGE }}" \
+            --cache=true \
+            --cleanup \
+            --cache-dir=/workspace/cache \
             --credsStore=ecr-login
 
   deploy:
