@@ -1,0 +1,359 @@
+nameOverride: ""
+fullnameOverride: ""
+imagePullSecrets: []
+config:
+  network:
+    id: 10111
+    name: "Zero1 Token"
+    shortname: "Zero1 Token"
+    currency:
+      name: "Zero1 Token"
+      symbol: DEAI
+      decimals: 18
+      dualToken: false
+  account:
+    enabled: false
+  testnet: true
+  nameService:
+    enabled: false
+    url: ""
+  prometheus:
+    enabled: false
+
+# ------------------------------------------------------Backend-----------------------------------------------------
+# ------------------------------------------------------Backend-----------------------------------------------------
+blockscout:
+  enabled: true
+  replicaCount: 1
+  securityContext:
+    runAsUser: 0
+    runAsGroup: 0          
+    allowPrivilegeEscalation: true 
+  image:
+    repository: blockscout/blockscout
+    pullPolicy: IfNotPresent
+    tag: "6.8.0"
+  command: sh -c "bin/blockscout eval \"Elixir.Explorer.ReleaseTasks.create_and_migrate()\" && bin/blockscout start"
+  separateApi:
+    enabled: false
+    replicaCount: 2
+    resources:
+      limits:
+        cpu: 1
+        memory: 2Gi
+      requests:
+        cpu: 500m
+        memory: 1Gi
+  env:
+    ETHEREUM_JSONRPC_VARIANT: geth
+    ETHEREUM_JSONRPC_HTTP_URL: "https://testnet-rpc.cypher.z1labs.ai"
+    ETHEREUM_JSONRPC_TRACE_URL: "https://testnet-rpc.cypher.z1labs.ai"
+    SUBNETWORK: "Cypher testnet"
+    LOGO: /images/blockscout_logo.svg
+    ETHEREUM_JSONRPC_TRANSPORT: http
+    ETHEREUM_JSONRPC_DISABLE_ARCHIVE_BALANCES: false
+    NETWORK_PATH: /
+    BLOCKSCOUT_HOST: blockscout-testnet-stage.cypherscan.ai
+    BLOCKSCOUT_PROTOCOL: https
+    SECRET_KEY_BASE: "56NtB48ear7+wMSf0IQuWDAAazhpb31qyc7GiyspBP2vh7t5zlCsF5QDv76chXeN"
+    PORT: 4000
+    COIN_NAME: DEAI
+    EMISSION_FORMAT: DEFAULT
+    POOL_SIZE: 100
+    POOL_SIZE_API: 30
+    ECTO_USE_SSL: false
+    HEART_BEAT_TIMEOUT: 30
+    BLOCK_TRANSFORMER: base
+    FOOTER_LOGO: /images/blockscout_logo.svg
+    FOOTER_LINK_TO_OTHER_EXPLORERS: false
+    FOOTER_OTHER_EXPLORERS: {}
+    SUPPORTED_CHAINS: {}
+    CACHE_BLOCK_COUNT_PERIOD: 7200
+    CACHE_TXS_COUNT_PERIOD: 7200
+    CACHE_ADDRESS_SUM_PERIOD: 3600
+    CACHE_TOTAL_GAS_USAGE_PERIOD: 3600
+    CACHE_ADDRESS_TRANSACTIONS_GAS_USAGE_COUNTER_PERIOD: 1800
+    CACHE_TOKEN_HOLDERS_COUNTER_PERIOD: 3600
+    CACHE_TOKEN_TRANSFERS_COUNTER_PERIOD: 3600
+    CACHE_ADDRESS_WITH_BALANCES_UPDATE_INTERVAL: 1800
+    CACHE_AVERAGE_BLOCK_PERIOD: 1800
+    CACHE_MARKET_HISTORY_PERIOD: 21600
+    CACHE_ADDRESS_TRANSACTIONS_COUNTER_PERIOD: 1800
+    CACHE_ADDRESS_TOKENS_USD_SUM_PERIOD: 3600
+    CACHE_ADDRESS_TOKEN_TRANSFERS_COUNTER_PERIOD: 1800
+    TOKEN_METADATA_UPDATE_INTERVAL: 172800
+    CONTRACT_VERIFICATION_ALLOWED_SOLIDITY_EVM_VERSIONS: homestead,tangerineWhistle,spuriousDragon,byzantium,constantinople,petersburg,istanbul,berlin,london,paris,shanghai,default
+    CONTRACT_VERIFICATION_ALLOWED_VYPER_EVM_VERSIONS: byzantium,constantinople,petersburg,istanbul,berlin,paris,shanghai,default
+    CONTRACT_MAX_STRING_LENGTH_WITHOUT_TRIMMING: 2040
+    UNCLES_IN_AVERAGE_BLOCK_TIME: false
+    DISABLE_WEBAPP: false
+    API_V1_READ_METHODS_DISABLED: false
+    API_V1_WRITE_METHODS_DISABLED: false
+    DISABLE_INDEXER: false
+    DISABLE_REALTIME_INDEXER: false
+    DISABLE_CATCHUP_INDEXER: false
+    INDEXER_DISABLE_TOKEN_INSTANCE_REALTIME_FETCHER: false
+    INDEXER_DISABLE_TOKEN_INSTANCE_RETRY_FETCHER: false
+    INDEXER_DISABLE_TOKEN_INSTANCE_SANITIZE_FETCHER: false
+    INDEXER_DISABLE_TOKEN_INSTANCE_LEGACY_SANITIZE_FETCHER: false
+    INDEXER_DISABLE_PENDING_TRANSACTIONS_FETCHER: true
+    INDEXER_DISABLE_INTERNAL_TRANSACTIONS_FETCHER: false
+    WEBAPP_URL: "https://blockscout-testnet-stage.cypherscan.ai/"
+    API_URL: "https://blockscout-testnet-stage.cypherscan.ai/"
+    SHOW_ADDRESS_MARKETCAP_PERCENTAGE: true
+    CHECKSUM_ADDRESS_HASHES: true
+    CHECKSUM_FUNCTION: eth
+    DISABLE_EXCHANGE_RATES: true
+    TXS_STATS_ENABLED: true
+    SHOW_PRICE_CHART: false
+    SHOW_PRICE_CHART_LEGEND: false
+    SHOW_TXS_CHART: true
+    TXS_HISTORIAN_INIT_LAG: 0
+    TXS_STATS_DAYS_TO_COMPILE_AT_INIT: 10
+    COIN_BALANCE_HISTORY_DAYS: 90
+    APPS_MENU: true
+    EXTERNAL_APPS: []
+    SHOW_MAINTENANCE_ALERT: false
+    SOURCIFY_INTEGRATION_ENABLED: false
+    CHAIN_ID: 10111
+    MAX_SIZE_UNLESS_HIDE_ARRAY: 50
+    HIDE_BLOCK_MINER: false
+    DISPLAY_TOKEN_ICONS: false
+    SHOW_TENDERLY_LINK: false
+    RE_CAPTCHA_DISABLED: false
+    API_RATE_LIMIT_TIME_INTERVAL: 1s
+    API_RATE_LIMIT_BY_IP_TIME_INTERVAL: 5m
+    API_RATE_LIMIT: 50
+    API_RATE_LIMIT_BY_KEY: 50
+    API_RATE_LIMIT_BY_WHITELISTED_IP: 50
+    API_RATE_LIMIT_UI_V2_WITH_TOKEN: 5
+    API_RATE_LIMIT_BY_IP: 3000
+    API_RATE_LIMIT_UI_V2_TOKEN_TTL_IN_SECONDS: 18000
+    FETCH_REWARDS_WAY: trace_block
+    MICROSERVICE_SC_VERIFIER_ENABLED: true
+    # MICROSERVICE_SC_VERIFIER_URL: "https://verifier.cypherscan.ai/"
+    # MICROSERVICE_SC_VERIFIER_TYPE: sc_verifier
+    MICROSERVICE_SC_VERIFIER_URL: "https://eth-bytecode-db.services.blockscout.com/"
+    MICROSERVICE_SC_VERIFIER_TYPE: eth_bytecode_db
+    MICROSERVICE_VISUALIZE_SOL2UML_ENABLED: true
+    MICROSERVICE_VISUALIZE_SOL2UML_URL: "https://blockscout-testnet-stage-visualizer.cypherscan.ai/"
+    MICROSERVICE_SIG_PROVIDER_ENABLED: true
+    MICROSERVICE_SIG_PROVIDER_URL: "http://smart-contract-verification-sig-provider/"
+    DECODE_NOT_A_CONTRACT_CALLS: true
+    ACCOUNT_CLOAK_KEY:
+    ACCOUNT_ENABLED: false
+    ACCOUNT_REDIS_URL: redis://redis-master:6379
+    EIP_1559_ELASTICITY_MULTIPLIER: 2
+    API_V2_ENABLED: true
+    DATABASE_QUEUE_TARGET: 100
+    DATABASE_READ_ONLY_API_URL: "postgresql://blockscoutstage:3oY4m1iDL2DP6v1z@cypher-prod.c5cmcoam0qy3.us-east-2.rds.amazonaws.com:5432/blockscoutstage"
+    DATABASE_URL: "postgresql://blockscoutstage:3oY4m1iDL2DP6v1z@cypher-prod.c5cmcoam0qy3.us-east-2.rds.amazonaws.com:5432/blockscoutstage"
+    JSON_RPC: "https://testnet-rpc.cypher.z1labs.ai"
+  extraEnv: []
+  envFromSecret: []
+  envFrom: []
+  command:
+    - /bin/sh
+  args:
+    - -c
+    - bin/blockscout start
+  podAnnotations: {}
+
+  podSecurityContext: {}
+  securityContext: {}
+  terminationGracePeriodSeconds: 300
+  livenessProbe:
+    enabled: true
+    path: /api/v1/health/liveness
+    params:
+      initialDelaySeconds: 100
+      periodSeconds: 100
+      timeoutSeconds: 30
+  readinessProbe:
+    enabled: true
+    path: /api/v1/health/readiness
+    params:
+      initialDelaySeconds: 60
+      periodSeconds: 10
+      timeoutSeconds: 60
+
+  service:
+    type: ClusterIP
+    ports:
+      - protocol: TCP
+        port: 80
+        targetPort: 4000
+  ingress:
+    enabled: false
+    className: ""
+    annotations: {}
+    hostname: chart-example.local
+    tls:
+      enabled: false
+      #secretName:
+    paths:
+      - path: /api
+        pathType: Prefix
+      - path: /socket
+        pathType: Prefix
+      - path: /sitemap.xml
+        pathType: Prefix
+      - path: /public-metrics
+        pathType: Prefix
+      - path: /auth/auth0
+        pathType: Exact
+      - path: /auth/auth0/callback
+        pathType: Exact
+      - path: /auth/logout
+        pathType: Exact
+
+  resources:
+    limits:
+      cpu: 2
+      memory: 4Gi
+    requests:
+      cpu: 1
+      memory: 2Gi
+
+# ------------------------------------------------------Frontend-----------------------------------------------------
+# ------------------------------------------------------Frontend-----------------------------------------------------
+frontend:
+  enabled: true
+  image:
+    repository: antongulak/front
+    tag: enc3
+    pullPolicy: IfNotPresent
+  replicaCount: 2
+  podAnnotations: {}
+  podSecurityContext: {}
+  securityContext: {}
+  service:
+    type: ClusterIP
+    port: 80
+  ingress:
+    enabled: false
+    className: ""
+    annotations: {}
+    hostname: chart-example.local
+    tls:
+      enabled: false
+    paths:
+      - path: /
+  resources:
+    limits:
+      memory: "1Gi"
+      cpu: "500m"
+    requests:
+      memory: "256Mi"
+      cpu: "250m"
+  livenessProbe:
+    enabled: true
+    path: /api/healthz
+    params:
+      initialDelaySeconds: 100
+      periodSeconds: 100
+      timeoutSeconds: 30
+  readinessProbe:
+    enabled: true
+    path: /api/healthz
+    params:
+      initialDelaySeconds: 30
+      periodSeconds: 10
+      timeoutSeconds: 30
+  env:
+    API_V2_ENABLED: true
+    NEXT_PUBLIC_API_HOST: "blockscout-testnet-stage.cypherscan.ai"
+    NEXT_PUBLIC_API_PROTOCOL: https
+    NEXT_PUBLIC_STATS_API_HOST: "https://blockscout-testnet-stage-stats.cypherscan.ai/"
+    NEXT_PUBLIC_NETWORK_NAME: "Cypher Testnet"
+    NEXT_PUBLIC_NETWORK_SHORT_NAME: "Cypher Testnet"
+    NEXT_PUBLIC_NETWORK_ID: 10111
+    NEXT_PUBLIC_NETWORK_CURRENCY_NAME: "Zero1 Token"
+    NEXT_PUBLIC_NETWORK_CURRENCY_SYMBOL: DEAI
+    NEXT_PUBLIC_NETWORK_CURRENCY_DECIMALS: 18
+    NEXT_PUBLIC_API_BASE_PATH: /
+    NEXT_PUBLIC_APP_HOST: "blockscout-testnet-stage.cypherscan.ai"
+    NEXT_PUBLIC_APP_PROTOCOL: https
+    NEXT_PUBLIC_OG_DESCRIPTION: "The First FHE-EVM Chain for Confidential Computing"
+    NEXT_PUBLIC_OG_IMAGE_URL: "https://blockscout-testnet-stage.cypherscan.ai/static/og_placeholder.png"
+    NEXT_PUBLIC_VISUALIZE_API_HOST: "https://blockscout-testnet-stage-visualizer.cypherscan.ai/"
+    NEXT_PUBLIC_IS_TESTNET: true
+    NEXT_PUBLIC_API_WEBSOCKET_PROTOCOL: wss
+    NEXT_PUBLIC_API_SPEC_URL: "https://raw.githubusercontent.com/blockscout/blockscout-api-v2-swagger/main/swagger.yaml"
+    NEXT_PUBLIC_AD_BANNER_PROVIDER: "none"
+    NEXT_PUBLIC_NETWORK_RPC_URL: "https://testnet-rpc.cypher.z1labs.ai"
+    NEXT_PUBLIC_HAS_USER_OPS: false
+  extraEnv: []
+  envFromSecret: []
+  envFrom: []
+
+# ------------------------------------------------------Stats-----------------------------------------------------
+# ------------------------------------------------------Stats-----------------------------------------------------
+stats:
+  enabled: true
+  image:
+    repository: ghcr.io/blockscout/stats
+    tag: latest
+    pullPolicy: IfNotPresent
+  replicaCount: 1
+  service:
+    type: ClusterIP
+    ports:
+    - protocol: TCP
+      port: 80       
+      targetPort: 8050
+    metricsPort: 6060
+  podAnnotations: {}
+  podSecurityContext: {}
+  securityContext: {}
+  ingress:
+    enabled: false
+    className: ""
+    annotations: {}
+    hostname: chart-example-stats.local
+    tls:
+      enabled: false
+    paths:
+      - path: /
+        pathType: Prefix
+  resources:
+    limits:
+      memory: "512Mi"
+      cpu: 250m
+    requests:
+      memory: 512Mi
+      cpu: 250m
+  files:
+    enabled: false
+    list: {}
+    mountPath: /tmp/path
+
+  livenessProbe:
+    enabled: false
+    path: /health
+    params:
+      initialDelaySeconds: 100
+      periodSeconds: 100
+      timeoutSeconds: 30
+  readinessProbe:
+    enabled: false
+    path: /health
+    params:
+      initialDelaySeconds: 60
+      periodSeconds: 10
+      timeoutSeconds: 60
+  env:
+    STATS__SERVER__HTTP__ENABLED: true
+    STATS__SERVER__HTTP__ADDR: "0.0.0.0:8050"
+    STATS__SERVER__HTTP__MAX_BODY_SIZE: "2097152"
+    STATS__CREATE_DATABASE: false
+    STATS__RUN_MIGRATIONS: true
+    STATS__TRACING__ENABLED: true
+    STATS__TRACING__FORMAT: default
+    STATS__DEFAULT_SCHEDULE: "0 0 1 * * * *"
+    STATS__FORCE_UPDATE_ON_START: false
+    STATS__BLOCKSCOUT_API_URL: "https://blockscout-testnet-stage.cypherscan.ai/"
+    STATS__BLOCKSCOUT_DB_URL: "postgresql://blockscoutstage:3oY4m1iDL2DP6v1z@cypher-prod.c5cmcoam0qy3.us-east-2.rds.amazonaws.com:5432/blockscoutstage"
+    STATS__DB_URL: "postgresql://statsstage:3oY4gDa3L2DLA6sdfs3@cypher-prod.c5cmcoam0qy3.us-east-2.rds.amazonaws.com:5432/statsstage"
+    STATS__SERVER__HTTP__CORS__ENABLED: true
+    STATS__SERVER__HTTP__CORS__ALLOWED_ORIGIN: "http://localhost:8080, https://blockscout-testnet-stage.cypherscan.ai/"
