@@ -39,7 +39,9 @@ jobs:
 
       - name: Build and push Docker image using Kaniko
         run: |
-          docker run \
+          mkdir -p /kaniko/.docker
+          echo "{\"credsStore\":\"ecr-login\"}" > /kaniko/.docker/config.json
+          docker run --rm \
             -v "${{ github.workspace }}":/workspace \
             -v /kaniko/.docker:/kaniko/.docker \
             -e AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }} \
@@ -50,8 +52,7 @@ jobs:
             --destination="${{ env.CI_REGISTRY_IMAGE }}:${{ env.TAG_IMAGE }}" \
             --cache=true \
             --cleanup \
-            --cache-dir=/workspace/cache \
-            --credsStore=ecr-login
+            --cache-dir=/workspace/cache
 
   deploy:
     runs-on: ubuntu-latest
