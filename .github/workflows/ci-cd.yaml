@@ -37,22 +37,23 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Build and push Docker image using Kaniko
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Login to AWS ECR
+        uses: docker/login-action@v2
         run: |
-          mkdir -p /kaniko/.docker
-          echo "{\"credsStore\":\"ecr-login\"}" > /kaniko/.docker/config.json
-          docker run --rm \
-            -v "${{ github.workspace }}":/workspace \
-            -v /kaniko/.docker:/kaniko/.docker \
-            -e AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }} \
-            -e AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }} \
-            gcr.io/kaniko-project/executor:debug \
-            --context=/workspace \
-            --dockerfile=/workspace/Dockerfile \
-            --destination="${{ env.CI_REGISTRY_IMAGE }}:${{ env.TAG_IMAGE }}" \
-            --cache=true \
-            --cleanup \
-            --cache-dir=/workspace/cache
+          aws ecr get-login-password --region ${{ env.AWS_DEFAULT_REGION }} | helm registry login --username AWS --password-stdin 590184127530.dkr.ecr.us-east-2.amazonaws.com
+
+      - name: Build and push Docker image with remote cache
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: ${{ env.CI_REGISTRY_IMAGE }}:${{ env.TAG_IMAGE }}
+          cache-from: type=registry,ref=${{ env.CI_REGISTRY_IMAGE }}:cache
+          cache-to: type=registry,ref=${{ env.CI_REGISTRY_IMAGE }}:cache,mode=max
 
   deploy:
     runs-on: ubuntu-latest
@@ -85,7 +86,7 @@ jobs:
 
       - name: Login to ECR
         run: |
-          aws ecr get-login-password --region ${{ env.AWS_DEFAULT_REGION }} | helm registry login --username AWS --password-stdin ${{ env.CI_REGISTRY_IMAGE }}
+          aws ecr get-login-password --region ${{ env.AWS_DEFAULT_REGION }} | helm registry login --username AWS --password-stdin 590184127530.dkr.ecr.us-east-2.amazonaws.com
 
       - name: Deploy with Helm
         run: |
