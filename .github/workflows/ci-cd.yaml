@@ -58,8 +58,7 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: ${{ env.CI_REGISTRY_IMAGE }}:${{ env.TAG_IMAGE }}
-          cache-from: type=registry,ref=${{ env.CI_REGISTRY_IMAGE }}:cache
-          cache-to: type=registry,ref=${{ env.CI_REGISTRY_IMAGE }}:cache,mode=max
+          
   deploy:
     runs-on: ubuntu-latest
     needs: build
