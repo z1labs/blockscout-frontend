@@ -58,7 +58,7 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: ${{ env.CI_REGISTRY_IMAGE }}:${{ env.TAG_IMAGE }}
-          
+
   deploy:
     runs-on: ubuntu-latest
     needs: build
@@ -78,11 +78,6 @@ jobs:
           curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
           chmod 700 get_helm.sh
           ./get_helm.sh
-
-      - name: Install kubectl
-        run: |
-          curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
-          install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 
       - name: Configure kubectl for EKS
         run: |
