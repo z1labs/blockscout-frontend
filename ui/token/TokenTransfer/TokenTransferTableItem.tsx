@@ -24,13 +24,19 @@ const TokenTransferTableItem = ({
   tokenId,
   isLoading,
 }: Props) => {
-  const { usd, valueStr } = 'value' in total && total.value !== null ? getCurrencyValue({
+  let { usd, valueStr } = 'value' in total && total.value !== null ? getCurrencyValue({
     value: total.value,
     exchangeRate: token.exchange_rate,
     accuracy: 8,
     accuracyUsd: 2,
     decimals: total.decimals || '0',
   }) : { usd: null, valueStr: null };
+
+  if(valueStr!.length >= 75){
+    const p1 = valueStr!.slice(0, 10);
+    const p2 = valueStr!.slice(-10);
+    valueStr = `${p1}...${p2} (Encrypted amount)`;
+  }
 
   return (
     <Tr alignItems="top">
