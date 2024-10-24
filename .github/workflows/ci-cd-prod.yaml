@@ -90,7 +90,7 @@ jobs:
 
       - name: Deploy with Helm
         run: |
-          helm upgrade --install blockscout-stack -n blockscout oci://590184127530.dkr.ecr.us-east-2.amazonaws.com/cypher/blockscout-stack --version 1.6.8 -f ./helm-values-stage.yaml \
+          helm upgrade --install blockscout-stack -n blockscout oci://590184127530.dkr.ecr.us-east-2.amazonaws.com/cypher/blockscout-stack --version 1.6.8 -f ./helm-values-prod.yaml \
           --set "frontend.image.repository=${{ env.CI_REGISTRY_IMAGE }}" \
           --set "frontend.image.tag=${{ env.TAG_IMAGE }}" \
           --set stats.envFromSecret.STATS__BLOCKSCOUT_DB_URL=${{ secrets.BLOCKSCOUT_DB_TESTNET_PROD }} \
