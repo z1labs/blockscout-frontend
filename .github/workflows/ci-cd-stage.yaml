@@ -9,7 +9,8 @@ env:
   ENVIRONMENT_NAME: staging
   AWS_DEFAULT_REGION: us-east-2
   CI_REGISTRY_IMAGE: 590184127530.dkr.ecr.us-east-2.amazonaws.com/cypher/blockscout-front
-  TAG_IMAGE: staging
+  TAG_IMAGE: "stage-${{ github.sha }}"
+  CACHE_IMAGE: "${{ env.CI_REGISTRY_IMAGE }}:cache-stage"
 
 jobs:
   prepare:
@@ -28,7 +29,6 @@ jobs:
       - name: Create ECR repositories
         run: |
           aws ecr describe-repositories --region ${{ env.AWS_DEFAULT_REGION }} --repository-names cypher/blockscout-front || aws ecr create-repository --region ${{ env.AWS_DEFAULT_REGION }} --repository-name cypher/blockscout-front
-          aws ecr describe-repositories --region ${{ env.AWS_DEFAULT_REGION }} --repository-names cypher/blockscout-front/cache || aws ecr create-repository --region ${{ env.AWS_DEFAULT_REGION }} --repository-name cypher/blockscout-front/cache
 
   build:
     runs-on: ubuntu-latest
@@ -58,6 +58,8 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: ${{ env.CI_REGISTRY_IMAGE }}:${{ env.TAG_IMAGE }}
+          cache-from: ${{ env.CACHE_IMAGE }}
+          cache-to: ${{ env.CACHE_IMAGE }}
 
   deploy:
     runs-on: ubuntu-latest
@@ -89,7 +91,7 @@ jobs:
 
       - name: Deploy with Helm
         run: |
-          helm upgrade --install blockscout-stack -n blockscout-stage oci://590184127530.dkr.ecr.us-east-2.amazonaws.com/cypher/blockscout-stack --version 1.6.8 -f ./helm-values.yaml \
+          helm upgrade --install blockscout-stack -n blockscout-stage oci://590184127530.dkr.ecr.us-east-2.amazonaws.com/cypher/blockscout-stack --version 1.6.8 -f ./helm-values-stage.yaml \
           --set "frontend.image.repository=${{ env.CI_REGISTRY_IMAGE }}" \
           --set "frontend.image.tag=${{ env.TAG_IMAGE }}" \
           --set stats.envFromSecret.STATS__BLOCKSCOUT_DB_URL=${{ secrets.BLOCKSCOUT_DB_TESTNET_STAGING }} \

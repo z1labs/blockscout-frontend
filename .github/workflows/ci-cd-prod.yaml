@@ -1,0 +1,100 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  ENVIRONMENT_NAME: production
+  AWS_DEFAULT_REGION: us-east-2
+  CI_REGISTRY_IMAGE: 590184127530.dkr.ecr.us-east-2.amazonaws.com/cypher/blockscout-front
+  TAG_IMAGE: "prod-${{ github.sha }}"
+  CACHE_IMAGE: "${{ env.CI_REGISTRY_IMAGE }}:cache-prod"
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up AWS CLI
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_DEFAULT_REGION }}
+
+      - name: Create ECR repositories
+        run: |
+          aws ecr describe-repositories --region ${{ env.AWS_DEFAULT_REGION }} --repository-names cypher/blockscout-front || aws ecr create-repository --region ${{ env.AWS_DEFAULT_REGION }} --repository-name cypher/blockscout-front
+
+  build:
+    runs-on: ubuntu-latest
+    needs: prepare
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up AWS CLI
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_DEFAULT_REGION }}
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Login to AWS ECR
+        run: |
+          aws ecr get-login-password --region ${{ env.AWS_DEFAULT_REGION }} | docker login --username AWS --password-stdin ${{ env.CI_REGISTRY_IMAGE }}
+
+      - name: Build and push Docker image with remote cache
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: ${{ env.CI_REGISTRY_IMAGE }}:${{ env.TAG_IMAGE }}
+          cache-from: ${{ env.CACHE_IMAGE }}
+          cache-to: ${{ env.CACHE_IMAGE }}
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up AWS CLI
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_DEFAULT_REGION }}
+
+      - name: Install Helm
+        run: |
+          curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+          chmod 700 get_helm.sh
+          ./get_helm.sh
+
+      - name: Configure kubectl for EKS
+        run: |
+          aws eks update-kubeconfig --name cypher_project-prod --region ${{ env.AWS_DEFAULT_REGION }}
+
+      - name: Login to ECR
+        run: |
+          aws ecr get-login-password --region ${{ env.AWS_DEFAULT_REGION }} | helm registry login --username AWS --password-stdin 590184127530.dkr.ecr.us-east-2.amazonaws.com
+
+      - name: Deploy with Helm
+        run: |
+          helm upgrade --install blockscout-stack -n blockscout oci://590184127530.dkr.ecr.us-east-2.amazonaws.com/cypher/blockscout-stack --version 1.6.8 -f ./helm-values-stage.yaml \
+          --set "frontend.image.repository=${{ env.CI_REGISTRY_IMAGE }}" \
+          --set "frontend.image.tag=${{ env.TAG_IMAGE }}" \
+          --set stats.envFromSecret.STATS__BLOCKSCOUT_DB_URL=${{ secrets.BLOCKSCOUT_DB_TESTNET_PROD }} \
+          --set stats.envFromSecret.STATS__DB_URL=${{ secrets.STATS_DB_TESTNET_PROD }} \
+          --set blockscout.envFromSecret.DATABASE_URL=${{ secrets.BLOCKSCOUT_DB_TESTNET_PROD }} \
+          --set blockscout.envFromSecret.DATABASE_READ_ONLY_API_URL=${{ secrets.BLOCKSCOUT_DB_TESTNET_PROD }}
