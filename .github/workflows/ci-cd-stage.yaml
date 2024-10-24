@@ -59,7 +59,7 @@ jobs:
           push: true
           tags: ${{ env.CI_REGISTRY_IMAGE }}:${{ env.TAG_IMAGE }}
           cache-from: type=registry,ref=${{ env.CI_REGISTRY_IMAGE }}:cache-stage
-          cache-to: type=registry,ref=${{ env.CI_REGISTRY_IMAGE }}:cache-stage
+          cache-to: type=registry,ref=${{ env.CI_REGISTRY_IMAGE }}:cache-stage,mode=max,image-manifest=true
 
   deploy:
     runs-on: ubuntu-latest

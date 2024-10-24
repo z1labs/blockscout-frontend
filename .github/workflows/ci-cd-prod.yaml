@@ -61,7 +61,7 @@ jobs:
           cache-from: ${{ env.CACHE_IMAGE }}
           cache-to: ${{ env.CACHE_IMAGE }}
           cache-from: type=registry,ref=${{ env.CI_REGISTRY_IMAGE }}:cache-prod
-          cache-to: type=registry,ref=${{ env.CI_REGISTRY_IMAGE }}:cache-prod,mode=max
+          cache-to: type=registry,ref=${{ env.CI_REGISTRY_IMAGE }}:cache-prod,mode=max,image-manifest=true
 
   deploy:
     runs-on: ubuntu-latest
