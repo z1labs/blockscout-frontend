@@ -10,7 +10,6 @@ env:
   AWS_DEFAULT_REGION: us-east-2
   CI_REGISTRY_IMAGE: 590184127530.dkr.ecr.us-east-2.amazonaws.com/cypher/blockscout-front
   TAG_IMAGE: "prod-${{ github.sha }}"
-  CACHE_IMAGE: 590184127530.dkr.ecr.us-east-2.amazonaws.com/cypher/blockscout-front:cache-prod
 
 jobs:
   prepare:
@@ -58,8 +57,6 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: ${{ env.CI_REGISTRY_IMAGE }}:${{ env.TAG_IMAGE }}
-          cache-from: ${{ env.CACHE_IMAGE }}
-          cache-to: ${{ env.CACHE_IMAGE }}
           cache-from: type=registry,ref=${{ env.CI_REGISTRY_IMAGE }}:cache-prod
           cache-to: type=registry,ref=${{ env.CI_REGISTRY_IMAGE }}:cache-prod,mode=max,image-manifest=true
 

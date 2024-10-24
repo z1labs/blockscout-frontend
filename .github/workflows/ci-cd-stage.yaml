@@ -10,7 +10,6 @@ env:
   AWS_DEFAULT_REGION: us-east-2
   CI_REGISTRY_IMAGE: 590184127530.dkr.ecr.us-east-2.amazonaws.com/cypher/blockscout-front
   TAG_IMAGE: "stage-${{ github.sha }}"
-  CACHE_IMAGE: 590184127530.dkr.ecr.us-east-2.amazonaws.com/cypher/blockscout-front:cache-stage
 
 jobs:
   prepare:
