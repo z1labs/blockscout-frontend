@@ -60,6 +60,8 @@ jobs:
           tags: ${{ env.CI_REGISTRY_IMAGE }}:${{ env.TAG_IMAGE }}
           cache-from: ${{ env.CACHE_IMAGE }}
           cache-to: ${{ env.CACHE_IMAGE }}
+          cache-from: type=registry,ref=${{ env.CI_REGISTRY_IMAGE }}:cache-prod
+          cache-to: type=registry,ref=${{ env.CI_REGISTRY_IMAGE }}:cache-prod,mode=max
 
   deploy:
     runs-on: ubuntu-latest
