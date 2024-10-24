@@ -3,7 +3,7 @@ name: CI/CD Pipeline Production
 on:
   push:
     branches:
-      - main
+      - testnet-prod
 
 env:
   ENVIRONMENT_NAME: production
