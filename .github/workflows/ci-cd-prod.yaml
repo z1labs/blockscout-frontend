@@ -10,7 +10,7 @@ env:
   AWS_DEFAULT_REGION: us-east-2
   CI_REGISTRY_IMAGE: 590184127530.dkr.ecr.us-east-2.amazonaws.com/cypher/blockscout-front
   TAG_IMAGE: "prod-${{ github.sha }}"
-  CACHE_IMAGE: "${{ env.CI_REGISTRY_IMAGE }}:cache-prod"
+  CACHE_IMAGE: 590184127530.dkr.ecr.us-east-2.amazonaws.com/cypher/blockscout-front:cache-prod
 
 jobs:
   prepare:
