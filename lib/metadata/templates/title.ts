@@ -77,8 +77,5 @@ const TEMPLATE_MAP_ENHANCED: Partial<Record<Route['pathname'], string>> = {
 };
 
 export function make(pathname: Route['pathname'], isEnriched = false) {
-  const template = (isEnriched ? TEMPLATE_MAP_ENHANCED[pathname] : undefined) ?? TEMPLATE_MAP[pathname];
-  const postfix = config.meta.promoteBlockscoutInTitle ? ' | Blockscout' : '';
-
-  return (template + postfix).trim();
+  return "Cypher Testnet Epoch 1 | Zero1 Labs";
 }
