@@ -4,8 +4,8 @@ imagePullSecrets: []
 config:
   network:
     id: 10111
-    name: "Zero1 Token"
-    shortname: "Zero1 Token"
+    name: "Cypher Testnet"
+    shortname: "Cypher Testnet"
     currency:
       name: "Zero1 Token"
       symbol: DEAI
@@ -33,7 +33,6 @@ blockscout:
     repository: blockscout/blockscout
     pullPolicy: IfNotPresent
     tag: "6.8.0"
-  command: sh -c "bin/blockscout eval \"Elixir.Explorer.ReleaseTasks.create_and_migrate()\" && bin/blockscout start"
   separateApi:
     enabled: false
     replicaCount: 2
@@ -146,19 +145,17 @@ blockscout:
     EIP_1559_ELASTICITY_MULTIPLIER: 2
     API_V2_ENABLED: true
     DATABASE_QUEUE_TARGET: 100
-    DATABASE_READ_ONLY_API_URL: "postgresql://blockscoutstage:3oY4m1iDL2DP6v1z@cypher-prod.c5cmcoam0qy3.us-east-2.rds.amazonaws.com:5432/blockscoutstage"
-    DATABASE_URL: "postgresql://blockscoutstage:3oY4m1iDL2DP6v1z@cypher-prod.c5cmcoam0qy3.us-east-2.rds.amazonaws.com:5432/blockscoutstage"
     JSON_RPC: "https://testnet-rpc.cypher.z1labs.ai"
   extraEnv: []
-  envFromSecret: []
   envFrom: []
+
   command:
     - /bin/sh
   args:
     - -c
-    - bin/blockscout start
-  podAnnotations: {}
+    - "bin/blockscout eval \"Elixir.Explorer.ReleaseTasks.create_and_migrate()\" && bin/blockscout start"
 
+  podAnnotations: {}
   podSecurityContext: {}
   securityContext: {}
   terminationGracePeriodSeconds: 300
@@ -185,28 +182,6 @@ blockscout:
         targetPort: 4000
   ingress:
     enabled: false
-    className: ""
-    annotations: {}
-    hostname: chart-example.local
-    tls:
-      enabled: false
-      #secretName:
-    paths:
-      - path: /api
-        pathType: Prefix
-      - path: /socket
-        pathType: Prefix
-      - path: /sitemap.xml
-        pathType: Prefix
-      - path: /public-metrics
-        pathType: Prefix
-      - path: /auth/auth0
-        pathType: Exact
-      - path: /auth/auth0/callback
-        pathType: Exact
-      - path: /auth/logout
-        pathType: Exact
-
   resources:
     limits:
       cpu: 2
@@ -232,13 +207,6 @@ frontend:
     port: 80
   ingress:
     enabled: false
-    className: ""
-    annotations: {}
-    hostname: chart-example.local
-    tls:
-      enabled: false
-    paths:
-      - path: /
   resources:
     limits:
       memory: "1Gi"
@@ -276,6 +244,7 @@ frontend:
     NEXT_PUBLIC_APP_PROTOCOL: https
     NEXT_PUBLIC_OG_DESCRIPTION: "The First FHE-EVM Chain for Confidential Computing"
     NEXT_PUBLIC_OG_IMAGE_URL: "https://blockscout-testnet-stage.cypherscan.ai/static/og_placeholder.png"
+    # NEXT_PUBLIC_HOMEPAGE_CHARTS: ["daily_txs", "market_cap"] 
     NEXT_PUBLIC_VISUALIZE_API_HOST: "https://blockscout-testnet-stage-visualizer.cypherscan.ai/"
     NEXT_PUBLIC_IS_TESTNET: true
     NEXT_PUBLIC_API_WEBSOCKET_PROTOCOL: wss
@@ -284,7 +253,7 @@ frontend:
     NEXT_PUBLIC_NETWORK_RPC_URL: "https://testnet-rpc.cypher.z1labs.ai"
     NEXT_PUBLIC_HAS_USER_OPS: false
   extraEnv: []
-  envFromSecret: []
+  envFromSecret: false
   envFrom: []
 
 # ------------------------------------------------------Stats-----------------------------------------------------
@@ -353,7 +322,11 @@ stats:
     STATS__DEFAULT_SCHEDULE: "0 0 1 * * * *"
     STATS__FORCE_UPDATE_ON_START: false
     STATS__BLOCKSCOUT_API_URL: "https://blockscout-testnet-stage.cypherscan.ai/"
-    STATS__BLOCKSCOUT_DB_URL: "postgresql://blockscoutstage:3oY4m1iDL2DP6v1z@cypher-prod.c5cmcoam0qy3.us-east-2.rds.amazonaws.com:5432/blockscoutstage"
-    STATS__DB_URL: "postgresql://statsstage:3oY4gDa3L2DLA6sdfs3@cypher-prod.c5cmcoam0qy3.us-east-2.rds.amazonaws.com:5432/statsstage"
     STATS__SERVER__HTTP__CORS__ENABLED: true
     STATS__SERVER__HTTP__CORS__ALLOWED_ORIGIN: "http://localhost:8080, https://blockscout-testnet-stage.cypherscan.ai/"
+    RUST_BACKTRACE: full
+
+# ------------------------------------------------------userOpsIndexer-----------------------------------------------------
+# ------------------------------------------------------userOpsIndexer-----------------------------------------------------
+userOpsIndexer:
+  enabled: false
