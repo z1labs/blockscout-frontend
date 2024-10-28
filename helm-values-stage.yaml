@@ -45,8 +45,8 @@ blockscout:
         memory: 1Gi
   env:
     ETHEREUM_JSONRPC_VARIANT: geth
-    ETHEREUM_JSONRPC_HTTP_URL: "https://testnet-rpc.cypher.z1labs.ai"
-    ETHEREUM_JSONRPC_TRACE_URL: "https://testnet-rpc.cypher.z1labs.ai"
+    ETHEREUM_JSONRPC_HTTP_URL: "https://staging-node-rpc.cypherscan.ai"
+    ETHEREUM_JSONRPC_TRACE_URL: "https://staging-node-rpc.cypherscan.ai"
     SUBNETWORK: "Cypher testnet"
     LOGO: /images/blockscout_logo.svg
     ETHEREUM_JSONRPC_TRANSPORT: http
@@ -145,7 +145,7 @@ blockscout:
     EIP_1559_ELASTICITY_MULTIPLIER: 2
     API_V2_ENABLED: true
     DATABASE_QUEUE_TARGET: 100
-    JSON_RPC: "https://testnet-rpc.cypher.z1labs.ai"
+    JSON_RPC: "https://staging-node-rpc.cypherscan.ai"
   extraEnv: []
   envFrom: []
 
@@ -250,7 +250,7 @@ frontend:
     NEXT_PUBLIC_API_WEBSOCKET_PROTOCOL: wss
     NEXT_PUBLIC_API_SPEC_URL: "https://raw.githubusercontent.com/blockscout/blockscout-api-v2-swagger/main/swagger.yaml"
     NEXT_PUBLIC_AD_BANNER_PROVIDER: "none"
-    NEXT_PUBLIC_NETWORK_RPC_URL: "https://testnet-rpc.cypher.z1labs.ai"
+    NEXT_PUBLIC_NETWORK_RPC_URL: "https://staging-node-rpc.cypherscan.ai"
     NEXT_PUBLIC_HAS_USER_OPS: false
   extraEnv: []
   envFromSecret: false
