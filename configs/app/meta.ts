@@ -6,8 +6,8 @@ const defaultImageUrl = '/static/og_placeholder.png';
 const meta = Object.freeze({
   promoteBlockscoutInTitle: getEnvValue('NEXT_PUBLIC_PROMOTE_BLOCKSCOUT_IN_TITLE') === 'false' ? false : true,
   og: {
-    description: getEnvValue('NEXT_PUBLIC_OG_DESCRIPTION') || '',
-    imageUrl: app.baseUrl + (getExternalAssetFilePath('NEXT_PUBLIC_OG_IMAGE_URL') || defaultImageUrl),
+    description: "The First FHE-EVM Chain for Confidential Computing",
+    imageUrl: defaultImageUrl,
     enhancedDataEnabled: getEnvValue('NEXT_PUBLIC_OG_ENHANCED_DATA_ENABLED') === 'true',
   },
   seo: {

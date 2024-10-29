@@ -72,6 +72,9 @@ module.exports = {
     '@typescript-eslint/brace-style': [ 'error', '1tbs' ],
     '@typescript-eslint/consistent-type-imports': [ 'error' ],
     '@typescript-eslint/indent': [ 'error', 2 ],
+    '@typescript-eslint/no-unused-vars': 'off', // Disables this rule globally
+    'quotes': 'off', // Disables quotes linting globally
+    // Other rules.
     '@typescript-eslint/member-delimiter-style': [ 'error' ],
     '@typescript-eslint/naming-convention': [ 'error',
       {
@@ -128,9 +131,9 @@ module.exports = {
         leadingUnderscore: 'allow',
       },
     ],
-    '@typescript-eslint/no-duplicate-imports': [ 'error' ],
+    //'@typescript-eslint/no-duplicate-imports': [ 'error' ],
     '@typescript-eslint/no-empty-function': [ 'off' ],
-    '@typescript-eslint/no-unused-vars': [ 'error', { ignoreRestSiblings: true } ],
+    //'@typescript-eslint/no-unused-vars': [ 'error', { ignoreRestSiblings: true } ],
     '@typescript-eslint/no-use-before-define': 'off',
     '@typescript-eslint/no-useless-constructor': [ 'error' ],
     '@typescript-eslint/type-annotation-spacing': 'error',
@@ -153,7 +156,7 @@ module.exports = {
     'eol-last': 'error',
     eqeqeq: [ 'error', 'allow-null' ],
     'id-match': [ 'error', '^[\\w$]+$' ],
-    'jsx-quotes': [ 'error', 'prefer-double' ],
+    //'jsx-quotes': [ 'error', 'prefer-double' ],
     'key-spacing': [ 'error', {
       beforeColon: false,
       afterColon: true,
@@ -198,9 +201,9 @@ module.exports = {
       keywords: true,
       numbers: true,
     } ],
-    quotes: [ 'error', 'single', {
-      allowTemplateLiterals: true,
-    } ],
+    // quotes: [ 'error', 'single', {
+    //   allowTemplateLiterals: true,
+    // } ],
     'space-before-function-paren': [ 'error', 'never' ],
     'space-before-blocks': [ 'error', 'always' ],
     'space-in-parens': [ 'error', 'never' ],

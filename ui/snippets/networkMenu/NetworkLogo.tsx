@@ -30,7 +30,6 @@ const LogoFallback = ({ isCollapsed, isSmall }: { isCollapsed?: boolean; isSmall
     return <Skeleton w="100%" borderRadius="sm" display={ display }/>;
   }
 
-  
   return (
     <IconSvg
       name={ isSmall ? 'networks/icon-placeholder' : 'networks/logo-placeholder' }
