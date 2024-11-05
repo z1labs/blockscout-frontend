@@ -47,7 +47,7 @@ blockscout:
     ETHEREUM_JSONRPC_VARIANT: geth
     ETHEREUM_JSONRPC_HTTP_URL: "https://staging-node-rpc.cypherscan.ai"
     ETHEREUM_JSONRPC_TRACE_URL: "https://staging-node-rpc.cypherscan.ai"
-    SUBNETWORK: "Cypher testnet"
+    SUBNETWORK: "Cypher Testnet"
     LOGO: /images/blockscout_logo.svg
     ETHEREUM_JSONRPC_TRANSPORT: http
     ETHEREUM_JSONRPC_DISABLE_ARCHIVE_BALANCES: false
