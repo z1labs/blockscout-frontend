@@ -28,18 +28,22 @@ export type TokenTransfer = (
   {
     token: TokenInfo<'ERC-20'>;
     total: Erc20TotalPayload;
+    isEncrypted?: boolean;
   } |
   {
     token: TokenInfo<'ERC-721'>;
     total: Erc721TotalPayload;
+    isEncrypted?: boolean;
   } |
   {
     token: TokenInfo<'ERC-1155'>;
     total: Erc1155TotalPayload;
+    isEncrypted?: boolean;
   } |
   {
     token: TokenInfo<'ERC-404'>;
     total: Erc404TotalPayload;
+    isEncrypted?: boolean;
   }
 ) & TokenTransferBase
 

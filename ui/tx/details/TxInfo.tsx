@@ -63,6 +63,7 @@ import TxRevertReason from 'ui/tx/details/TxRevertReason';
 import TxAllowedPeekers from 'ui/tx/TxAllowedPeekers';
 import TxSocketAlert from 'ui/tx/TxSocketAlert';
 import ZkSyncL2TxnBatchHashesInfo from 'ui/txnBatches/zkSyncL2/ZkSyncL2TxnBatchHashesInfo';
+import getCurrencyValue from 'lib/getCurrencyValue';
 
 const rollupFeature = config.features.rollup;
 
@@ -173,7 +174,20 @@ const TxInfo = ({ data, isLoading, socketStatus }: Props) => {
         }
       </DetailsInfoItem.Label>
       <DetailsInfoItem.Value>
-        <TxStatus status={ data.status } errorText={ data.status === 'error' ? data.result : undefined } isLoading={ isLoading }/>
+        { data.token_transfers && data.token_transfers.length > 0 && data.token_transfers.some(transfer => {
+          const { total, token } = transfer;
+          const { usd, valueStr } = 'value' in total && total.value !== null ? getCurrencyValue({
+            value: total.value,
+            exchangeRate: token.exchange_rate,
+            accuracy: 8,
+            accuracyUsd: 2,
+            decimals: total.decimals || '0',
+          }) : { usd: null, valueStr: null };
+
+          transfer.isEncrypted = !!(valueStr && valueStr.length >= 75);
+          return transfer.isEncrypted;
+        }) && ("") }
+        <TxStatus status={ data.status } errorText={ data.status === 'error' ? data.result : undefined} isLoading={ isLoading } />
         { data.method && (
           <Tag colorScheme={ data.method === 'Multicall' ? 'teal' : 'gray' } isLoading={ isLoading } isTruncated ml={ 3 }>
             { data.method }
@@ -186,7 +200,14 @@ const TxInfo = ({ data, isLoading, socketStatus }: Props) => {
             </Link>
           </Skeleton>
         ) }
+        { data.token_transfers && data.token_transfers.some(transfer => transfer.isEncrypted) && (
+          <Tag colorScheme="purple" ml={3} isTruncated>
+            (Encrypted transfer)
+          </Tag>
+        ) }
       </DetailsInfoItem.Value>
+
+
 
       { rollupFeature.isEnabled && rollupFeature.type === 'optimistic' && data.op_withdrawals && data.op_withdrawals.length > 0 &&
       !config.UI.views.tx.hiddenFields?.L1_status && (
