@@ -20,7 +20,7 @@ const mapNullToZero: (item: TimeChartItemRaw) => TimeChartItem = (item) => ({ ..
 
 const dailyTxsIndicator: TChainIndicator<'stats_charts_txs'> = {
   id: 'daily_txs',
-  title: 'Daily transactions',
+  title: 'Encrypted Daily Transactions',
   value: (stats) => stats.transactions_today === null ?
     'N/A' :
     Number(stats.transactions_today).toLocaleString(undefined, { maximumFractionDigits: 2, notation: 'compact' }),
