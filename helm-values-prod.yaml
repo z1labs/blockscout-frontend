@@ -7,7 +7,7 @@ config:
     name: "Cypher Testnet"
     shortname: "Cypher" 
     currency:
-      name: "Zero1 Token"
+      name: "Zero1 Token" 
       symbol: DEAI
       decimals: 18
       dualToken: false
