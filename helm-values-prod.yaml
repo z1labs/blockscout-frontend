@@ -5,7 +5,7 @@ config:
   network:
     id: 10111
     name: "Cypher Testnet"
-    shortname: "Cypher"
+    shortname: "Cypher" 
     currency:
       name: "Zero1 Token"
       symbol: DEAI
