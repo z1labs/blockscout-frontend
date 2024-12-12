@@ -328,7 +328,7 @@ stats:
     STATS__TRACING__FORMAT: default
     STATS__DEFAULT_SCHEDULE: "0 0 1 * * * *"
     STATS__FORCE_UPDATE_ON_START: false
-    STATS__BLOCKSCOUT_API_URL: "http://blockscout-stack-blockscout-svc/"
+    STATS__BLOCKSCOUT_API_URL: "https://testnet.cypherscan.ai/"
     STATS__SERVER__HTTP__CORS__ENABLED: true
     STATS__SERVER__HTTP__CORS__ALLOWED_ORIGIN: "http://localhost:8080, https://testnet.cypherscan.ai/"
 
