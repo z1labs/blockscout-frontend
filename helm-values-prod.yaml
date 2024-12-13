@@ -333,7 +333,7 @@ stats:
     STATS__BLOCKSCOUT_API_URL: "https://testnet.cypherscan.ai/"
     STATS__SERVER__HTTP__CORS__ENABLED: true
     STATS__SERVER__HTTP__CORS__ALLOWED_ORIGIN: "http://localhost:8080, https://testnet.cypherscan.ai/"
-    STATS__CONDITIONA__START__INTERNAL_TRANSACTIONS_RATIO__THRESHOLD: "0.85"
+    STATS__CONDITIONAL__START__INTERNAL_TRANSACTIONS_RATIO__THRESHOLD: "0.85"
 
 # ------------------------------------------------------userOpsIndexer-----------------------------------------------------
 # ------------------------------------------------------userOpsIndexer-----------------------------------------------------
