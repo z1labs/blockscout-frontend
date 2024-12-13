@@ -4,7 +4,7 @@ imagePullSecrets: []
 config:
   network:
     id: 10111
-    name: "Cypher Testnet"
+    name: "Cypher testnet"
     shortname: "Cypher" 
     currency:
       name: "Zero1 Token" 
@@ -99,7 +99,7 @@ blockscout:
     INDEXER_DISABLE_PENDING_TRANSACTIONS_FETCHER: true
     INDEXER_DISABLE_INTERNAL_TRANSACTIONS_FETCHER: false
     WEBAPP_URL: "https://testnet.cypherscan.ai/"
-    API_URL: "https://testnet.cypherscan.ai/"
+    API_URL: "https://testnet.cypherscan.ai/api"
     SHOW_ADDRESS_MARKETCAP_PERCENTAGE: true
     CHECKSUM_ADDRESS_HASHES: true
     CHECKSUM_FUNCTION: eth
@@ -243,9 +243,9 @@ frontend:
     API_V2_ENABLED: true
     NEXT_PUBLIC_API_HOST: "testnet.cypherscan.ai"
     NEXT_PUBLIC_API_PROTOCOL: https
-    NEXT_PUBLIC_STATS_API_HOST: "http://blockscout-stack-stats-svc:80/"
-    NEXT_PUBLIC_NETWORK_NAME: "Cypher Testnet"
-    NEXT_PUBLIC_NETWORK_SHORT_NAME: "Cypher Testnet"
+    NEXT_PUBLIC_STATS_API_HOST: "https://stats.cypherscan.ai/"
+    NEXT_PUBLIC_NETWORK_NAME: "Cypher testnet"
+    NEXT_PUBLIC_NETWORK_SHORT_NAME: "Cypher testnet"
     NEXT_PUBLIC_NETWORK_ID: 10111
     NEXT_PUBLIC_NETWORK_CURRENCY_NAME: "Zero1 Token"
     NEXT_PUBLIC_NETWORK_CURRENCY_SYMBOL: DEAI
