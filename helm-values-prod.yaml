@@ -32,7 +32,7 @@ blockscout:
   image:
     repository: blockscout/blockscout
     pullPolicy: IfNotPresent
-    tag: "6.8.0"
+    tag: "6.9.1"
   separateApi:
     enabled: false
     replicaCount: 2
