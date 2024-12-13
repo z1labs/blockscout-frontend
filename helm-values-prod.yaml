@@ -260,7 +260,7 @@ frontend:
     NEXT_PUBLIC_API_WEBSOCKET_PROTOCOL: wss
     NEXT_PUBLIC_API_SPEC_URL: "https://raw.githubusercontent.com/blockscout/blockscout-api-v2-swagger/main/swagger.yaml"
     NEXT_PUBLIC_AD_BANNER_PROVIDER: "none"
-    NEXT_PUBLIC_NETWORK_RPC_URL: "http://10.20.6.57:8449"
+    NEXT_PUBLIC_NETWORK_RPC_URL: "https://testnet-rpc.cypher.z1labs.ai/"
     NEXT_PUBLIC_HAS_USER_OPS: false
   extraEnv: []
   envFromSecret: []
