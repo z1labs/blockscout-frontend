@@ -4,7 +4,7 @@ imagePullSecrets: []
 config:
   network:
     id: 10111
-    name: "Cypher testnet"
+    name: "Cypher Testnet"
     shortname: "Cypher" 
     currency:
       name: "Zero1 Token" 
@@ -48,7 +48,7 @@ blockscout:
     ETHEREUM_JSONRPC_HTTP_URL: "http://10.20.6.57:8449"
     ETHEREUM_JSONRPC_TRACE_URL: "http://10.20.6.57:8449"
     ETHEREUM_JSONRPC_WS_URL: "ws://10.20.6.57:8450"
-    SUBNETWORK: "Cypher testnet"
+    SUBNETWORK: "Cypher Testnet"
     LOGO: /images/blockscout_logo.svg
     ETHEREUM_JSONRPC_TRANSPORT: http
     ETHEREUM_JSONRPC_DISABLE_ARCHIVE_BALANCES: false
@@ -147,9 +147,8 @@ blockscout:
     API_V2_ENABLED: true
     DATABASE_QUEUE_TARGET: 100
     JSON_RPC: "https://testnet-rpc.cypher.z1labs.ai/"
-    INDEXER_CATCHUP_BLOCKS_BATCH_SIZE: 50
-    INDEXER_INTERNAL_TRANSACTIONS_BATCH_SIZE: 50
-    INDEXER_INTERNAL_TRANSACTIONS_CONCURRENCY: 1
+    INDEXER_CATCHUP_BLOCKS_BATCH_SIZE: 20
+    INDEXER_INTERNAL_TRANSACTIONS_BATCH_SIZE: 20
   extraEnv: []
   envFrom: []
  
@@ -244,8 +243,8 @@ frontend:
     NEXT_PUBLIC_API_HOST: "testnet.cypherscan.ai"
     NEXT_PUBLIC_API_PROTOCOL: https
     NEXT_PUBLIC_STATS_API_HOST: "https://stats.cypherscan.ai/"
-    NEXT_PUBLIC_NETWORK_NAME: "Cypher testnet"
-    NEXT_PUBLIC_NETWORK_SHORT_NAME: "Cypher testnet"
+    NEXT_PUBLIC_NETWORK_NAME: "Cypher Testnet"
+    NEXT_PUBLIC_NETWORK_SHORT_NAME: "Cypher Testnet"
     NEXT_PUBLIC_NETWORK_ID: 10111
     NEXT_PUBLIC_NETWORK_CURRENCY_NAME: "Zero1 Token"
     NEXT_PUBLIC_NETWORK_CURRENCY_SYMBOL: DEAI
@@ -260,7 +259,7 @@ frontend:
     NEXT_PUBLIC_API_WEBSOCKET_PROTOCOL: wss
     NEXT_PUBLIC_API_SPEC_URL: "https://raw.githubusercontent.com/blockscout/blockscout-api-v2-swagger/main/swagger.yaml"
     NEXT_PUBLIC_AD_BANNER_PROVIDER: "none"
-    NEXT_PUBLIC_NETWORK_RPC_URL: "https://testnet-rpc.cypher.z1labs.ai/"
+    NEXT_PUBLIC_NETWORK_RPC_URL: "https://testnet-rpc.cypher.z1labs.ai"
     NEXT_PUBLIC_HAS_USER_OPS: false
   extraEnv: []
   envFromSecret: []
@@ -334,6 +333,7 @@ stats:
     STATS__BLOCKSCOUT_API_URL: "https://testnet.cypherscan.ai/"
     STATS__SERVER__HTTP__CORS__ENABLED: true
     STATS__SERVER__HTTP__CORS__ALLOWED_ORIGIN: "http://localhost:8080, https://testnet.cypherscan.ai/"
+    STATS__CONDITIONAL_​START__INTERNAL_​TRANSACTIONS_RATIO__​THRESHOLD: 0.85
 
 # ------------------------------------------------------userOpsIndexer-----------------------------------------------------
 # ------------------------------------------------------userOpsIndexer-----------------------------------------------------
