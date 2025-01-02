@@ -49,7 +49,7 @@ blockscout:
     # ETHEREUM_JSONRPC_TRACE_URL: "http://10.20.6.57:8449"
     # ETHEREUM_JSONRPC_WS_URL: "ws://10.20.6.57:9642"
     ETHEREUM_JSONRPC_HTTP_URL: "http://10.20.7.208:8547"
-    ETHEREUM_JSONRPC_TRACE_URL: "http://10.20.7.208:8547"
+    ETHEREUM_JSONRPC_TRACE_URL: "http://10.20.6.57:8449"
     ETHEREUM_JSONRPC_WS_URL: "ws://10.20.7.208:8548"
     SUBNETWORK: "Cypher Testnet"
     LOGO: /images/blockscout_logo.svg
