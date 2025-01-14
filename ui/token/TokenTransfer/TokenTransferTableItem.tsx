@@ -35,9 +35,9 @@ const TokenTransferTableItem = ({
   if(valueStr!.length >= 75){
     const p1 = valueStr!.slice(0, 10);
     const p2 = valueStr!.slice(-10);
-    valueStr = `${p1}...${p2} (Encrypted amount)`;
+    valueStr = `${p1}...${p2}`;
   } else {
-    valueStr = `${valueStr} (Encrypted amount)`;
+    valueStr = `${valueStr}`;
   }
 
   return (
@@ -96,7 +96,7 @@ const TokenTransferTableItem = ({
         <Td isNumeric verticalAlign="top">
           { valueStr && (
             <Skeleton isLoaded={ !isLoading } display="inline-block" mt="7px" wordBreak="break-all">
-              { valueStr }
+              { valueStr } { token.type === 'ERC-20' && ('(Encrypted amount)')}
             </Skeleton>
           ) }
           { usd && (

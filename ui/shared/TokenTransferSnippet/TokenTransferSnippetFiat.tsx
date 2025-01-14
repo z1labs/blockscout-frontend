@@ -30,7 +30,7 @@ const FtTokenTransferSnippet = ({ token, value, decimals }: Props) => {
   if(value.length >= 75){
     const p1 = value.slice(0, 10);
     const p2 = value.slice(-10);
-    entity.valueStr = `${p1}...${p2} (Encrypted amount)`;
+    entity.valueStr = `${p1}...${p2}`;
   } else {
     entity = getCurrencyValue({
       value: value,
@@ -38,13 +38,12 @@ const FtTokenTransferSnippet = ({ token, value, decimals }: Props) => {
       accuracyUsd: 2,
       decimals: decimals,
     });
-    entity.valueStr = `${entity.valueStr} (Encrypted amount)`;
   }
 
   return (
     <>
       <chakra.span color="text_secondary">for</chakra.span>
-      <span>{ entity.valueStr }</span>
+      <span>{ entity.valueStr } (Encrypted amount)</span>
       <TokenEntity
         token={{ ...token, name: token.symbol || token.name }}
         noCopy
