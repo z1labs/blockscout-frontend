@@ -5,23 +5,23 @@ const semanticTokens = {
       _dark: 'whiteAlpha.200',
     },
     text: {
-      'default': 'blackAlpha.800',
-      _dark: 'whiteAlpha.800',
+      'default': 'body.textPrimary',
+      _dark: 'body.textPrimary',
     },
     text_secondary: {
-      'default': 'gray.500',
-      _dark: 'gray.400',
+      'default': 'body.textSecondary',
+      _dark: 'body.textSecondary',
     },
     link: {
-      'default': 'blue.600',
-      _dark: 'blue.300',
+      'default': 'body.brand',
+      _dark: 'body.brand',
     },
     link_hovered: {
-      'default': 'blue.400',
+      'default': 'body.brandHover',
     },
     icon_link_external: {
-      'default': 'gray.300',
-      _dark: 'gray.500',
+      'default': 'body.brand',
+      _dark: 'body.brand',
     },
     icon_info: {
       'default': 'gray.400',

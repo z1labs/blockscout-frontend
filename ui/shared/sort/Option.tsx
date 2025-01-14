@@ -20,7 +20,7 @@ const Option = (props: OptionProps) => {
 
   const input = getInputProps();
   const checkbox = getRadioProps();
-  const bgColorHover = useColorModeValue('blue.50', 'whiteAlpha.100');
+  const bgColorHover = useColorModeValue('brand.50', 'whiteAlpha.100');
 
   return (
     <Box
@@ -39,7 +39,7 @@ const Option = (props: OptionProps) => {
       <Box { ...checkbox }>
         { props.children }
       </Box>
-      { props.isChecked && <IconSvg name="check" boxSize={ 4 } color="blue.600"/> }
+      { props.isChecked && <IconSvg name="check" boxSize={ 4 } color="brand.600"/> }
     </Box>
   );
 };

@@ -33,7 +33,7 @@ const Footer = () => {
   });
   const apiVersionUrl = getApiVersionUrl(backendVersionData?.backend_version);
   const issueUrl = useIssueUrl(backendVersionData?.backend_version);
-  const logoColor = useColorModeValue('blue.600', 'white');
+  const logoColor = useColorModeValue('brand.600', 'white');
 
   const BLOCKSCOUT_LINKS = [
     {

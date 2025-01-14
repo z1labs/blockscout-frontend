@@ -8,7 +8,7 @@ test.use({ viewport: { width: 150, height: 350 } });
 [
   { variant: 'solid', states: [ 'default', 'disabled', 'hovered', 'active' ] },
   { variant: 'outline', colorScheme: 'gray', withDarkMode: true, states: [ 'default', 'disabled', 'hovered', 'active', 'selected' ] },
-  { variant: 'outline', colorScheme: 'blue', withDarkMode: true, states: [ 'default', 'disabled', 'hovered', 'active', 'selected' ] },
+  { variant: 'outline', colorScheme: 'brand', withDarkMode: true, states: [ 'default', 'disabled', 'hovered', 'active', 'selected' ] },
   { variant: 'simple', withDarkMode: true, states: [ 'default', 'hovered' ] },
   { variant: 'ghost', withDarkMode: true, states: [ 'default', 'hovered', 'active' ] },
   { variant: 'subtle', states: [ 'default', 'hovered' ] },

@@ -119,7 +119,7 @@ const ChartWidget = ({
             <IconButton
               hidden={ !zoomRange }
               aria-label="Reset zoom"
-              colorScheme="blue"
+              colorScheme="brand"
               w={ 9 }
               h={ 8 }
               size="sm"

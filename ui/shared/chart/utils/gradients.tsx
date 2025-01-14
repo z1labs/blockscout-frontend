@@ -4,8 +4,8 @@ export const BlueLineGradient = {
   id: 'blue-line-gradient',
   defs: () => (
     <linearGradient id="blue-line-gradient">
-      <stop offset="0%" stopColor="#4299E1"/>
-      <stop offset="100%" stopColor="#00B5D8"/>
+      <stop offset="0%" stopColor="#55f89f"/>
+      <stop offset="100%" stopColor="#07bf5b"/>
     </linearGradient>
   ),
 };

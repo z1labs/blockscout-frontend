@@ -217,7 +217,7 @@ const ContractMethodForm = ({ data, attempt, onSubmit, onReset, isOpen }: Props)
           { result && !isLoading && (
             <Button
               variant="simple"
-              colorScheme="blue"
+              colorScheme="brand"
               size="sm"
               onClick={ onReset }
               ml={ 1 }

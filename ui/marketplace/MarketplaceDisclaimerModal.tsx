@@ -57,7 +57,7 @@ const MarketplaceDisclaimerModal = ({ isOpen, onClose, appId }: Props) => {
           <NextLink href={{ pathname: '/apps/[id]', query: { id: appId } }} passHref legacyBehavior>
             <Button
               variant="solid"
-              colorScheme="blue"
+              colorScheme="brand"
               mr={ 6 }
               py="10px"
               onClick={ handleContinueClick }
@@ -67,7 +67,7 @@ const MarketplaceDisclaimerModal = ({ isOpen, onClose, appId }: Props) => {
           </NextLink>
           <Button
             variant="outline"
-            colorScheme="blue"
+            colorScheme="brand"
             onClick={ onClose }
           >
             Cancel

@@ -14,7 +14,7 @@ const NetworkMenu = () => {
       <PopoverTrigger>
         <IconButton
           variant="simple"
-          colorScheme="blue"
+          colorScheme="brand"
           aria-label="Network menu"
           icon={ <IconSvg name="networks" boxSize={ 4 }/> }
           p="1px"

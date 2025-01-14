@@ -153,7 +153,7 @@ const Chart = () => {
   const shareButton = (
     <Button
       leftIcon={ <IconSvg name="share" w={ 4 } h={ 4 }/> }
-      colorScheme="blue"
+      colorScheme="brand"
       size="sm"
       variant="outline"
       onClick={ onShare }
@@ -212,7 +212,7 @@ const Chart = () => {
                 size={ 5 }
                 type="link"
                 variant="outline"
-                colorScheme="blue"
+                colorScheme="brand"
                 display="flex"
                 borderRadius="8px"
                 width={ 8 }

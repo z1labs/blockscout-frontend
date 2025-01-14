@@ -27,7 +27,7 @@ const Option = (props: OptionProps) => {
 
   const input = getInputProps();
   const checkbox = getRadioProps();
-  const bgColorHover = useColorModeValue('blue.50', 'whiteAlpha.100');
+  const bgColorHover = useColorModeValue('brand.50', 'whiteAlpha.100');
 
   return (
     <Box

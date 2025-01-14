@@ -71,7 +71,7 @@ const FullscreenChartModal = ({
             { Boolean(zoomRange) && (
               <Button
                 leftIcon={ <IconSvg name="repeat" w={ 4 } h={ 4 }/> }
-                colorScheme="blue"
+                colorScheme="brand"
                 gridColumn={ 2 }
                 justifySelf="end"
                 alignSelf="top"

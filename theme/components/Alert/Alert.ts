@@ -90,7 +90,7 @@ const Alert = defineMultiStyleConfig({
   variants,
   defaultProps: {
     variant: 'subtle',
-    colorScheme: 'blue',
+    colorScheme: 'brand',
   },
 });
 

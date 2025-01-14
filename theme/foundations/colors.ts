@@ -1,4 +1,24 @@
 const colors = {
+  body: {
+    color: '#FFFFFF',
+    bg: '#0A0A0A',
+    textPrimary: '#FFFFFF',
+    textSecondary: '#9EA8BD',
+    brand: '#55F89F',
+    brandHover: '#55F89F',
+  },
+  brand: {
+    '50': '#ddfdeb',
+    '100': '#bbfcd8',
+    '200': '#99fac5',
+    '300': '#77f9b2',
+    '400': '#55f89f',
+    '500': '#15f57a',
+    '600': '#07bf5b',
+    '700': '#057f3c',
+    '800': '#023f1e',
+    '900': '#011f0f',
+  },
   green: {
     '100': '#C6F6D5',
     '400': '#48BB78',

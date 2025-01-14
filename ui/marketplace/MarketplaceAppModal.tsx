@@ -115,7 +115,7 @@ const MarketplaceAppModal = ({
     } catch (err) {}
   }
 
-  const iconColor = useColorModeValue('blue.600', 'gray.400');
+  const iconColor = useColorModeValue('brand.600', 'gray.400');
 
   return (
     <Modal
@@ -279,7 +279,7 @@ const MarketplaceAppModal = ({
           <Flex gap={ 2 }>
             { categories.map((category) => (
               <Tag
-                colorScheme="blue"
+                colorScheme="brand"
                 key={ category }
               >
                 { category }

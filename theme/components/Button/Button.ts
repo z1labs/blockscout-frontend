@@ -41,8 +41,8 @@ const variantOutline = defineStyle((props) => {
   const color = isGrayTheme ? mode('blackAlpha.800', 'whiteAlpha.800')(props) : mode(`${ c }.600`, `${ c }.300`)(props);
   const borderColor = isGrayTheme ? mode('gray.200', 'gray.600')(props) : mode(`${ c }.600`, `${ c }.300`)(props);
 
-  const selectedBg = isGrayTheme ? mode('blue.50', 'gray.600')(props) : mode(`${ c }.50`, 'gray.600')(props);
-  const selectedColor = mode('blue.600', 'gray.50')(props);
+  const selectedBg = isGrayTheme ? mode('brand.50', 'gray.600')(props) : mode(`${ c }.50`, 'gray.600')(props);
+  const selectedColor = mode('brand.600', 'gray.50')(props);
 
   return {
     color,
@@ -154,35 +154,33 @@ const variantSubtle = defineStyle((props) => {
 
 // for buttons in the hero banner
 const variantHero = defineStyle((props) => {
-
-  const buttonConfig = config.UI.homepage.heroBanner?.button;
   return {
     bg: mode(
-      buttonConfig?._default?.background?.[0] || 'blue.600',
-      buttonConfig?._default?.background?.[1] || buttonConfig?._default?.background?.[0] || 'blue.600',
+      config.UI.homepage.heroBanner?.button?._default?.background?.[0] || 'brand.600',
+      config.UI.homepage.heroBanner?.button?._default?.background?.[1] || 'brand.600',
     )(props),
     color: mode(
-      buttonConfig?._default?.text_color?.[0] || 'white',
-      buttonConfig?._default?.text_color?.[1] || buttonConfig?._default?.text_color?.[0] || 'white',
+      config.UI.homepage.heroBanner?.button?._default?.text_color?.[0] || 'white',
+      config.UI.homepage.heroBanner?.button?._default?.text_color?.[1] || 'white',
     )(props),
     _hover: {
       bg: mode(
-        buttonConfig?._hover?.background?.[0] || 'blue.400',
-        buttonConfig?._hover?.background?.[1] || buttonConfig?._hover?.background?.[0] || 'blue.400',
+        config.UI.homepage.heroBanner?.button?._hover?.background?.[0] || 'brand.400',
+        config.UI.homepage.heroBanner?.button?._hover?.background?.[1] || 'brand.400',
       )(props),
       color: mode(
-        buttonConfig?._hover?.text_color?.[0] || 'white',
-        buttonConfig?._hover?.text_color?.[1] || buttonConfig?._hover?.text_color?.[0] || 'white',
+        config.UI.homepage.heroBanner?.button?._hover?.text_color?.[0] || 'white',
+        config.UI.homepage.heroBanner?.button?._hover?.text_color?.[1] || 'white',
       )(props),
     },
     '&[data-selected=true]': {
       bg: mode(
-        buttonConfig?._selected?.background?.[0] || 'blue.50',
-        buttonConfig?._selected?.background?.[1] || buttonConfig?._selected?.background?.[0] || 'blue.50',
+        config.UI.homepage.heroBanner?.button?._selected?.background?.[0] || 'brand.50',
+        config.UI.homepage.heroBanner?.button?._selected?.background?.[1] || 'brand.50',
       )(props),
       color: mode(
-        buttonConfig?._selected?.text_color?.[0] || 'blackAlpha.800',
-        buttonConfig?._selected?.text_color?.[1] || buttonConfig?._selected?.text_color?.[0] || 'blackAlpha.800',
+        config.UI.homepage.heroBanner?.button?._selected?.text_color?.[0] || 'blackAlpha.800',
+        config.UI.homepage.heroBanner?.button?._selected?.text_color?.[1] || 'blackAlpha.800',
       )(props),
     },
   };
@@ -269,7 +267,7 @@ const Button = defineStyleConfig({
   defaultProps: {
     variant: 'solid',
     size: 'md',
-    colorScheme: 'blue',
+    colorScheme: 'brand',
   },
 });
 

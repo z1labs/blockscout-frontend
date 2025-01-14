@@ -83,7 +83,7 @@ const AddressMudTable = ({ scrollRef, tableId, isQueryEnabled = true }: Props) =
       { Object.entries(filters).map(([ key, value ]) => {
         const index = key as FilterKeys === 'filter_key0' ? 0 : 1;
         return (
-          <Tag display="inline-flex" key={ key } maxW="360px" colorScheme="blue">
+          <Tag display="inline-flex" key={ key } maxW="360px" colorScheme="brand">
             <chakra.span color="text_secondary" >{
               getNameTypeText(data?.schema.key_names[index] || '', data?.schema.key_types[index] || '') }
             </chakra.span>
