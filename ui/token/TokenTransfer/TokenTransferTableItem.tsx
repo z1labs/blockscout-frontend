@@ -36,6 +36,8 @@ const TokenTransferTableItem = ({
     const p1 = valueStr!.slice(0, 10);
     const p2 = valueStr!.slice(-10);
     valueStr = `${p1}...${p2} (Encrypted amount)`;
+  } else {
+    valueStr = `${valueStr} (Encrypted amount)`;
   }
 
   return (

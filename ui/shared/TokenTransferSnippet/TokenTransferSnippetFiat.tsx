@@ -38,6 +38,7 @@ const FtTokenTransferSnippet = ({ token, value, decimals }: Props) => {
       accuracyUsd: 2,
       decimals: decimals,
     });
+    entity.valueStr = `${entity.valueStr} (Encrypted amount)`;
   }
 
   return (
