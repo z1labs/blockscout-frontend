@@ -27,8 +27,8 @@ blockscout:
   replicaCount: 1
   securityContext:
     runAsUser: 0
-    runAsGroup: 0          
-    allowPrivilegeEscalation: true 
+    runAsGroup: 0
+    allowPrivilegeEscalation: true
   image:
     repository: blockscout/blockscout
     pullPolicy: IfNotPresent
@@ -244,9 +244,9 @@ frontend:
     NEXT_PUBLIC_API_BASE_PATH: /
     NEXT_PUBLIC_APP_HOST: "blockscout-testnet-stage.cypherscan.ai"
     NEXT_PUBLIC_APP_PROTOCOL: https
-    NEXT_PUBLIC_OG_DESCRIPTION: "The First FHE-EVM Chain for Confidential Computing"
+    NEXT_PUBLIC_OG_DESCRIPTION: "The First Encrypted Transactions Chain for Confidential Computing"
     NEXT_PUBLIC_OG_IMAGE_URL: "https://blockscout-testnet-stage.cypherscan.ai/static/og_placeholder.png"
-    # NEXT_PUBLIC_HOMEPAGE_CHARTS: ["daily_txs", "market_cap"] 
+    # NEXT_PUBLIC_HOMEPAGE_CHARTS: ["daily_txs", "market_cap"]
     NEXT_PUBLIC_VISUALIZE_API_HOST: "https://blockscout-testnet-stage-visualizer.cypherscan.ai/"
     NEXT_PUBLIC_IS_TESTNET: true
     NEXT_PUBLIC_API_WEBSOCKET_PROTOCOL: wss
@@ -270,7 +270,7 @@ stats:
     type: ClusterIP
     ports:
     - protocol: TCP
-      port: 80       
+      port: 80
       targetPort: 8050
     metricsPort: 6060
   podAnnotations: {}

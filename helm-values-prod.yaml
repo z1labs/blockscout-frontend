@@ -5,9 +5,9 @@ config:
   network:
     id: 10111
     name: "Cypher Testnet"
-    shortname: "Cypher" 
+    shortname: "Cypher"
     currency:
-      name: "Zero1 Token" 
+      name: "Zero1 Token"
       symbol: DEAI
       decimals: 18
       dualToken: false
@@ -27,8 +27,8 @@ blockscout:
   replicaCount: 1
   securityContext:
     runAsUser: 0
-    runAsGroup: 0          
-    allowPrivilegeEscalation: true 
+    runAsGroup: 0
+    allowPrivilegeEscalation: true
   image:
     repository: blockscout/blockscout
     pullPolicy: IfNotPresent
@@ -153,7 +153,7 @@ blockscout:
     INDEXER_INTERNAL_TRANSACTIONS_BATCH_SIZE: 20
   extraEnv: []
   envFrom: []
- 
+
   command:
     - /bin/sh
   args:
@@ -254,7 +254,7 @@ frontend:
     NEXT_PUBLIC_API_BASE_PATH: /
     NEXT_PUBLIC_APP_HOST: "testnet.cypherscan.ai"
     NEXT_PUBLIC_APP_PROTOCOL: https
-    NEXT_PUBLIC_OG_DESCRIPTION: "The First FHE-EVM Chain for Confidential Computing"
+    NEXT_PUBLIC_OG_DESCRIPTION: "The First Encrypted Transactions Chain for Confidential Computing"
     NEXT_PUBLIC_OG_IMAGE_URL: "https://testnet.cypherscan.ai/static/og_placeholder.png"
     NEXT_PUBLIC_VISUALIZE_API_HOST: "https://visualizer.cypherscan.ai"
     NEXT_PUBLIC_IS_TESTNET: true
@@ -280,7 +280,7 @@ stats:
     type: ClusterIP
     ports:
     - protocol: TCP
-      port: 80       
+      port: 80
       targetPort: 8050
     metricsPort: 6060
   podAnnotations: {}

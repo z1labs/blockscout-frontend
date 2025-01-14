@@ -1,12 +1,13 @@
 import app from './app';
 import { getEnvValue, getExternalAssetFilePath } from './utils';
 
-const defaultImageUrl = '/static/og_placeholder.png';
+// const defaultImageUrl = '/static/og_placeholder.png';
+const defaultImageUrl = '/static/og_placeholder_3.png';
 
 const meta = Object.freeze({
   promoteBlockscoutInTitle: getEnvValue('NEXT_PUBLIC_PROMOTE_BLOCKSCOUT_IN_TITLE') === 'false' ? false : true,
   og: {
-    description: "The First FHE-EVM Chain for Confidential Computing",
+    description: "The First Encrypted Transactions Chain for Confidential Computing",
     imageUrl: defaultImageUrl,
     enhancedDataEnabled: getEnvValue('NEXT_PUBLIC_OG_ENHANCED_DATA_ENABLED') === 'true',
   },
