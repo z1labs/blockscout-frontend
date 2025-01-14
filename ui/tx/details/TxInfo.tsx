@@ -200,7 +200,12 @@ const TxInfo = ({ data, isLoading, socketStatus }: Props) => {
             </Link>
           </Skeleton>
         ) }
-        { data.token_transfers && data.token_transfers.some(transfer => transfer.isEncrypted) && (
+        {/*{ data.token_transfers && data.token_transfers.some(transfer => transfer.isEncrypted) && (*/}
+        {/*  <Tag colorScheme="purple" ml={3} isTruncated>*/}
+        {/*    (Encrypted transfer)*/}
+        {/*  </Tag>*/}
+        {/*) }*/}
+        { data.token_transfers && (
           <Tag colorScheme="purple" ml={3} isTruncated>
             (Encrypted transfer)
           </Tag>
