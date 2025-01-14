@@ -7,6 +7,6 @@ export const viewport = {
   xxl: { width: 1920, height: 1200 },
 };
 
-export const maskColor = '#4299E1'; // blue.400
+export const maskColor = '#55f89f'; // brand.400
 
 export const adsBannerSelector = '.adsbyslise';
