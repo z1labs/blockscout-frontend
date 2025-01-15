@@ -97,9 +97,9 @@ jobs:
           --set stats.envFromSecret.STATS__DB_URL=${{ secrets.STATS_DB_TESTNET_STAGING }} \
           --set blockscout.envFromSecret.DATABASE_URL=${{ secrets.BLOCKSCOUT_DB_TESTNET_STAGING }} \
           --set blockscout.envFromSecret.DATABASE_READ_ONLY_API_URL=${{ secrets.BLOCKSCOUT_DB_TESTNET_STAGING }} \
-          --set blockscout.envFromSecret.ETHEREUM_JSONRPC_HTTP_URL=${{ secrets.CYPHER_TESTNET_RPC }} \
-          --set blockscout.envFromSecret.ETHEREUM_JSONRPC_TRACE_URL=${{ secrets.CYPHER_TESTNET_RPC }} \
-          --set blockscout.envFromSecret.ETHEREUM_JSONRPC_ETH_CALL_URL=${{ secrets.CYPHER_TESTNET_RPC }} \
-          --set blockscout.envFromSecret.JSON_RPC=${{ secrets.CYPHER_TESTNET_RPC }} \
-          --set blockscout.envFromSecret.ETHEREUM_JSONRPC_WS_URL=${{ secrets.CYPHER_TESTNET_WSS }} \
+          --set blockscout.env.ETHEREUM_JSONRPC_HTTP_URL=${{ secrets.CYPHER_TESTNET_RPC }} \
+          --set blockscout.env.ETHEREUM_JSONRPC_TRACE_URL=${{ secrets.CYPHER_TESTNET_RPC }} \
+          --set blockscout.env.ETHEREUM_JSONRPC_ETH_CALL_URL=${{ secrets.CYPHER_TESTNET_RPC }} \
+          --set blockscout.env.JSON_RPC=${{ secrets.CYPHER_TESTNET_RPC }} \
+          --set blockscout.env.ETHEREUM_JSONRPC_WS_URL=${{ secrets.CYPHER_TESTNET_WSS }} \
           --set frontend.env.NEXT_PUBLIC_NETWORK_RPC_URL=${{ secrets.CYPHER_TESTNET_RPC }}
