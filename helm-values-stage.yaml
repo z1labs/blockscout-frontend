@@ -54,7 +54,7 @@ blockscout:
     ETHEREUM_JSONRPC_TRANSPORT: http
     ETHEREUM_JSONRPC_DISABLE_ARCHIVE_BALANCES: false
     NETWORK_PATH: /
-    BLOCKSCOUT_HOST: blockscout-testnet-stage.cypherscan.ai
+    BLOCKSCOUT_HOST: testnet3.cypherscan.ai
     BLOCKSCOUT_PROTOCOL: https
     SECRET_KEY_BASE: "56NtB48ear7+wMSf0IQuWDAAazhpb31qyc7GiyspBP2vh7t5zlCsF5QDv76chXeN"
     PORT: 4000
@@ -99,8 +99,8 @@ blockscout:
     INDEXER_DISABLE_TOKEN_INSTANCE_LEGACY_SANITIZE_FETCHER: false
     INDEXER_DISABLE_PENDING_TRANSACTIONS_FETCHER: true
     INDEXER_DISABLE_INTERNAL_TRANSACTIONS_FETCHER: false
-    WEBAPP_URL: "https://blockscout-testnet-stage.cypherscan.ai/"
-    API_URL: "https://blockscout-testnet-stage.cypherscan.ai/"
+    WEBAPP_URL: "https://testnet3.cypherscan.ai/"
+    API_URL: "https://testnet3.cypherscan.ai/"
     SHOW_ADDRESS_MARKETCAP_PERCENTAGE: true
     CHECKSUM_ADDRESS_HASHES: true
     CHECKSUM_FUNCTION: eth
@@ -232,7 +232,7 @@ frontend:
       timeoutSeconds: 30
   env:
     API_V2_ENABLED: true
-    NEXT_PUBLIC_API_HOST: "blockscout-testnet-stage.cypherscan.ai"
+    NEXT_PUBLIC_API_HOST: "testnet3.cypherscan.ai"
     NEXT_PUBLIC_API_PROTOCOL: https
     NEXT_PUBLIC_STATS_API_HOST: "https://blockscout-testnet-stage-stats.cypherscan.ai/"
     NEXT_PUBLIC_NETWORK_NAME: "Cypher Testnet"
@@ -242,10 +242,10 @@ frontend:
     NEXT_PUBLIC_NETWORK_CURRENCY_SYMBOL: DEAI
     NEXT_PUBLIC_NETWORK_CURRENCY_DECIMALS: 18
     NEXT_PUBLIC_API_BASE_PATH: /
-    NEXT_PUBLIC_APP_HOST: "blockscout-testnet-stage.cypherscan.ai"
+    NEXT_PUBLIC_APP_HOST: "testnet3.cypherscan.ai"
     NEXT_PUBLIC_APP_PROTOCOL: https
     NEXT_PUBLIC_OG_DESCRIPTION: "The First Encrypted Transactions Chain for Confidential Computing"
-    NEXT_PUBLIC_OG_IMAGE_URL: "https://blockscout-testnet-stage.cypherscan.ai/static/og_placeholder.png"
+    NEXT_PUBLIC_OG_IMAGE_URL: "https://testnet3.cypherscan.ai/static/og_placeholder.png"
     # NEXT_PUBLIC_HOMEPAGE_CHARTS: ["daily_txs", "market_cap"]
     NEXT_PUBLIC_VISUALIZE_API_HOST: "https://blockscout-testnet-stage-visualizer.cypherscan.ai/"
     NEXT_PUBLIC_IS_TESTNET: true
@@ -322,9 +322,9 @@ stats:
     STATS__TRACING__FORMAT: default
     STATS__DEFAULT_SCHEDULE: "0 0 1 * * * *"
     STATS__FORCE_UPDATE_ON_START: false
-    STATS__BLOCKSCOUT_API_URL: "https://blockscout-testnet-stage.cypherscan.ai/"
+    STATS__BLOCKSCOUT_API_URL: "https://testnet3.cypherscan.ai/"
     STATS__SERVER__HTTP__CORS__ENABLED: true
-    STATS__SERVER__HTTP__CORS__ALLOWED_ORIGIN: "http://localhost:8080, https://blockscout-testnet-stage.cypherscan.ai/"
+    STATS__SERVER__HTTP__CORS__ALLOWED_ORIGIN: "http://localhost:8080, https://testnet3.cypherscan.ai/"
     RUST_BACKTRACE: full
 
 # ------------------------------------------------------userOpsIndexer-----------------------------------------------------
