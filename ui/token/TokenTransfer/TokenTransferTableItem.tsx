@@ -11,6 +11,8 @@ import NftEntity from 'ui/shared/entities/nft/NftEntity';
 import TxEntity from 'ui/shared/entities/tx/TxEntity';
 import TimeAgoWithTooltip from 'ui/shared/TimeAgoWithTooltip';
 
+import BlurText from 'theme/components/BlurText';
+
 type Props = TokenTransfer & { tokenId?: string; isLoading?: boolean }
 
 const TokenTransferTableItem = ({
@@ -96,7 +98,7 @@ const TokenTransferTableItem = ({
         <Td isNumeric verticalAlign="top">
           { valueStr && (
             <Skeleton isLoaded={ !isLoading } display="inline-block" mt="7px" wordBreak="break-all">
-              { valueStr } { token.type === 'ERC-20' && ('(Encrypted amount)')}
+              <BlurText text={ valueStr } /> { token.type === 'ERC-20' && ('(Encrypted amount)')}
             </Skeleton>
           ) }
           { usd && (
