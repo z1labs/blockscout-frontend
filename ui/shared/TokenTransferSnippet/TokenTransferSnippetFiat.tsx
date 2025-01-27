@@ -7,6 +7,8 @@ import getCurrencyValue from 'lib/getCurrencyValue';
 import TokenEntity from 'ui/shared/entities/token/TokenEntity';
 import BigNumber from 'bignumber.js';
 
+import BlurText from 'theme/components/BlurText';
+
 interface Props {
   token: TokenInfo;
   value: string;
@@ -43,7 +45,8 @@ const FtTokenTransferSnippet = ({ token, value, decimals }: Props) => {
   return (
     <>
       <chakra.span color="text_secondary">for</chakra.span>
-      <span>{ entity.valueStr } (Encrypted amount)</span>
+      {/* <span>{ entity.valueStr } (Encrypted amount)</span> */}
+      <span><BlurText text={ entity.valueStr } /> (Encrypted amount)</span>
       <TokenEntity
         token={{ ...token, name: token.symbol || token.name }}
         noCopy
@@ -54,5 +57,6 @@ const FtTokenTransferSnippet = ({ token, value, decimals }: Props) => {
     </>
   );
 };
+
 
 export default React.memo(FtTokenTransferSnippet);
